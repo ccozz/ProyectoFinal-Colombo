@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+
+{% block contenido_titulo %}
+    CORE
+{% endblock contenido_titulo %}
+
+{% block contenido %}    
+    <ul>
+        <li><a href="{% url 'cliente:index' %}">Ir a CLIENTE</a></li>
+        <li><a href="{% url 'producto:index' %}">Ir a PRODUCTO</a></li>
+    </ul>
+{% endblock contenido %}
