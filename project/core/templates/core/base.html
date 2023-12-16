@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppCoder</title>
+</head>
+<body>
+    <h1>
+        {% block contenido_titulo %}
+        {% endblock contenido_titulo %}
+    </h1>
+
+    {% block contenido %}    
+    {% endblock contenido %}
+
+    {% block footer %}
+        <footer>
+            <p>CoderHouse 2023</p>
+        </footer>
+    {% endblock footer %}
+
+</body>
+</html>
