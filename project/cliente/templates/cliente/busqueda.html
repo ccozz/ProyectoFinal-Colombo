@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 
 {% block contenido_titulo %}
-    CLIENTE
+    BUSQUEDA
 {% endblock contenido_titulo %}
 
 {% block contenido %}    
@@ -13,7 +13,7 @@
             <th>NACIMIENTO</th>
             <th>PAIS</th>
         </tr>
-        {% for cliente in clientes %}
+        {% for cliente in cliente_nombre %}
             <tr>
                 <td>{{cliente.apellido}}</td>
                 <td>{{cliente.nombre}}</td>
