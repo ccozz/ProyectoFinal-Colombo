@@ -5,5 +5,22 @@
 {% endblock contenido_titulo %}
 
 {% block contenido %}    
-    <a href="{% url 'core:index' %}">Volver a INICIO</a>
+    
+    <table style="width:100%">
+        <tr>
+            <th>APELLIDO</th>
+            <th>NOMBRE</th>
+            <th>NACIMIENTO</th>
+            <th>PAIS</th>
+        </tr>
+        {% for cliente in clientes %}
+            <tr>
+                <td>{{cliente.apellido}}</td>
+                <td>{{cliente.nombre}}</td>
+                <td>{{cliente.nacimiento}}</td>
+                <td>{{cliente.pais_origen}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
 {% endblock contenido %}
