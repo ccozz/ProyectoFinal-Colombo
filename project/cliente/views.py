@@ -22,8 +22,8 @@ def crear(request):
     if request.method == "POST":
         form = forms.ClienteForm(request.POST)
         if form.is_valid():
-            form.save
+            form.save()
             return redirect("cliente:index")
     else:
-        form = forms.ClienteForm
+        form = forms.ClienteForm()
     return render(request, "cliente/crear.html", {"form": form})
