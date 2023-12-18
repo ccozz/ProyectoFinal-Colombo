@@ -13,24 +13,24 @@ def home(request):
 def busqueda(request):
     if request.method == "GET":
         form = ClienteBuscarFormulario()
-        return render(request, "cliente/busqueda.html", context = {"form": form})
+        return render(request, "cliente/busqueda.html", context={"form": form})
     else:
         formulario = ClienteBuscarFormulario(request.POST)
         if formulario.is_valid():
             informacion = formulario.cleaned_data
 
-            clientes_filtrados = []
-            for cliente in models.Cliente.objects.filter(cliente=informacion["cliente"]):
-                clientes_filtrados.append(cliente)
+            # Accede al campo correcto del formulario
+            apellido = informacion["apellido"]
 
-            contexto = {"cliente": clientes_filtrados}
+            # Utiliza el método icontains para la búsqueda de subcadena sin importar mayúsculas y minúsculas
+            clientes_filtrados = models.Cliente.objects.filter(apellido__icontains=apellido)
+
+            contexto = {"clientes": clientes_filtrados}
             return render(request, "cliente/clientes_list.html", contexto)
+        else:
+            # Manejar el caso cuando el formulario no es válido
+            return render(request, "cliente/busqueda.html", context={"form": formulario})
 
-    cliente_nombre = models.Cliente.objects.filter(nombre__contains="John")
-    context = {
-        "cliente_nombre": cliente_nombre
-    }
-    return render(request, "cliente/busqueda.html", context)
 
 from . import forms
 

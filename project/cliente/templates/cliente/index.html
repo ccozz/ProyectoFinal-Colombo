@@ -35,6 +35,7 @@
         {% endfor %}
     </table>
     <br>
+    <a href="{% url 'cliente:clientes-buscar' %}" class="btn btn-primary">BUSCAR CLIENTE</a>
     <a href="{% url 'cliente:crear' %}" class="btn btn-primary">CREAR NUEVO</a>
 
 {% endblock contenido %}

@@ -1,21 +1,42 @@
 {% extends "core/base.html" %}
 
 {% block contenido_titulo %}
-    BUSQUEDA DE CLIENTES
+    RESULTADOS DE BUSQUEDA
 {% endblock contenido_titulo %}
 
 {% block contenido %}
 
-    <div class="content-container">
-        {% if clientes %}
-        <ul>
+    {% if clientes %}
+        <table style="width:100%">
+            <tr>
+                <th>APELLIDO</th>
+                <th>NOMBRE</th>
+                <th>NACIMIENTO</th>
+                <th>PAIS</th>
+            </tr>
             {% for cliente in clientes %}
-            <li>{{ cliente.apelllido }} ({{ cliente.nombre }})</li>
+                <tr>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>
+                        {% if cliente.nacimiento %}
+                            {{cliente.nacimiento}}
+                        {% else %}
+                            "No Registrada"
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if cliente.pais_origen %}
+                            {{cliente.pais_origen}}
+                        {% else %}
+                            "No Registrado"
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
-        </ul>
-        {% else %}
+        </table>
+    {% else %}
         <p>No se registran clientes con ese apellido.</p>
-        {% endif %}
-    </div>
+    {% endif %}
 
 {% endblock contenido %}
