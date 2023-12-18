@@ -14,21 +14,24 @@
         <link href="{% static 'core/css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
-        {% include 'core/navbar.html' %}
-        <!-- Page Content-->
-        <div class="container px-4 px-lg-5">
-            
-            <h1>
-                {% block contenido_titulo %}
-                {% endblock contenido_titulo %}
-            </h1>
-            
-            {% block contenido %}
-            {% endblock contenido %}
-            
-        </div>
+        <div class="container p-3 bg-dark text-white">
+            {% include 'core/navbar.html' %}
+            <!-- Page Content-->
+            <div class="container px-4 px-lg-5">
+                
+                <h1 class="font-weight-light text-center">
+                    {% block contenido_titulo %}
+                    {% endblock contenido_titulo %}
+                </h1>
+                
+                {% block contenido %}
+                {% endblock contenido %}
+                
+            </div>
 
-        {% include 'core/footer.html' %}
+            {% include 'core/footer.html' %}
+        </div>
+        
 
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

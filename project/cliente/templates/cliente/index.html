@@ -21,14 +21,14 @@
                     {% if cliente.nacimiento %}
                         {{cliente.nacimiento}}
                     {% else %}
-                        "No Registrada"
+                    <i class="fa fa-italic" aria-hidden="true">-- No Registrada --</i>
                     {% endif %} 
                 </td>
                 <td>
                     {% if cliente.pais_origen %}
                         {{cliente.pais_origen}}
                     {% else %}
-                        "No Registrado"
+                        <i class="fa fa-italic" aria-hidden="true">-- No Registrado --</i>
                     {% endif %}
                 </td>
             </tr>
