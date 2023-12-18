@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from . import models
+from .forms import ClienteBuscarFormulario
 
 def home(request):
     # llamada a la base de datos
@@ -10,6 +11,21 @@ def home(request):
     return render(request, "cliente/index.html", context)
 
 def busqueda(request):
+    if request.method == "GET":
+        form = ClienteBuscarFormulario()
+        return render(request, "cliente/busqueda.html", context = {"form": form})
+    else:
+        formulario = ClienteBuscarFormulario(request.POST)
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+
+            clientes_filtrados = []
+            for cliente in models.Cliente.objects.filter(cliente=informacion["cliente"]):
+                clientes_filtrados.append(cliente)
+
+            contexto = {"cliente": clientes_filtrados}
+            return render(request, "cliente/clientes_list.html", contexto)
+
     cliente_nombre = models.Cliente.objects.filter(nombre__contains="John")
     context = {
         "cliente_nombre": cliente_nombre

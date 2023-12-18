@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+
+{% block contenido_titulo %}
+    BUSQUEDA DE CLIENTES
+{% endblock contenido_titulo %}
+
+{% block contenido %}
+
+    <div class="content-container">
+        {% if clientes %}
+        <ul>
+            {% for cliente in clientes %}
+            <li>{{ cliente.apelllido }} ({{ cliente.nombre }})</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No se registran clientes con ese apellido.</p>
+        {% endif %}
+    </div>
+
+{% endblock contenido %}

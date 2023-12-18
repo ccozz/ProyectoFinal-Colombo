@@ -1,38 +1,15 @@
 {% extends 'core/base.html' %}
 
 {% block contenido_titulo %}
-    BUSQUEDA
+    BUSQUEDA DE CLIENTES
 {% endblock contenido_titulo %}
 
 {% block contenido %}    
     
-    <table style="width:100%">
-        <tr>
-            <th>APELLIDO</th>
-            <th>NOMBRE</th>
-            <th>NACIMIENTO</th>
-            <th>PAIS</th>
-        </tr>
-        {% for cliente in cliente_nombre %}
-            <tr>
-                <td>{{cliente.apellido}}</td>
-                <td>{{cliente.nombre}}</td>
-                <td>
-                    {% if cliente.nacimiento %}
-                        {{cliente.nacimiento}}
-                    {% else %}
-                        "No Registrada"
-                    {% endif %} 
-                </td>
-                <td>
-                    {% if cliente.pais_origen %}
-                        {{cliente.pais_origen}}
-                    {% else %}
-                        "No Registrado"
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" class="btn btn-success" value="BUSCAR">
+    </form>
 
 {% endblock contenido %}
