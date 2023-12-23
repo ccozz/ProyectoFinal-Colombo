@@ -1,10 +1,24 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block contenido_titulo %}
     NOSOTROS
 {% endblock contenido_titulo %}
 
 {% block contenido %}
-    <p>Hola! Esto es About</p>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A distinctio quasi reiciendis, architecto eveniet praesentium libero atque mollitia aliquam perspiciatis impedit dolores voluptas, veritatis voluptate. Voluptas dicta vitae alias ab eaque, totam ducimus voluptate vero repellat aspernatur saepe. Modi accusamus velit, vel laborum voluptatem delectus molestiae repellat, neque blanditiis cupiditate saepe ea? Doloremque harum perferendis dolorum maiores vero sit quidem expedita aspernatur vitae nobis? Hic doloribus quasi tempore omnis minus beatae, dolor libero quod, placeat ab cum doloremque magni suscipit quae impedit dolorem dicta, quisquam maxime. Ullam ducimus dolorum explicabo a quaerat molestiae earum provident! Inventore laboriosam id ut quisquam!</p>
+    <!-- About Us Section -->
+    <section id="about" class="container my-5 d-flex align-items-center justify-content-center">
+        <div class="row">
+            <div class="col-lg-9 text-center text-justify">
+                <p class="lead">En Motomersa, no solo somos apasionados de las motocicletas, sino que también estamos completamente dedicados a ofrecer una experiencia excepcional a todos los entusiastas de las dos ruedas. Nuestra obsesión impulsa cada aspecto de nuestro negocio, desde la cuidadosa selección de repuestos y accesorios hasta el compromiso inquebrantable de garantizar que cada motociclista, sin importar su estilo o preferencia, encuentre exactamente lo que necesita para hacer de cada viaje una experiencia única y emocionante.
+                <br><br>
+                Nos esforzamos incansablemente por mantenernos a la vanguardia de las últimas tendencias y tecnologías para que puedas contar con nosotros como tu fuente confiable de productos de alta calidad, ya sea que estés buscando repuestos originales, accesorios personalizados o simplemente consejos expertos sobre cómo mejorar tu experiencia de conducción. No solo vendemos productos; construimos una comunidad de motociclistas que comparten la misma pasión!
+                <br><br>
+                Así que, unite a nosotros en Motomersa, donde la obsesión por las motocicletas se combina con un compromiso inquebrantable de brindarte el mejor servicio y asesoramiento. ¡Hacé de cada viaje una aventura inolvidable!</p>
+            </div>
+            <div class="col-lg-3 d-flex align-items-center">
+                <img src="{% static 'core/img/nosotros.png' %}" class="img-fluid" alt="Imagen Sobre Nosotros">
+            </div>
+        </div>
+    </section>
 {% endblock contenido %}

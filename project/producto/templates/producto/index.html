@@ -5,5 +5,24 @@
 {% endblock contenido_titulo %}
 
 {% block contenido %}    
-    <a href="{% url 'core:index' %}">Volver a INICIO</a>
+    
+    <table style="width:100%">
+        <tr>
+            <th>NOMBRE</th>
+            <th>CATEGORIA</th>
+            <th>DESCRIPCION</th>
+            <th>PRECIO</th>
+        </tr>
+        {% for producto in productos %}
+            <tr>
+                <td>{{producto.nombre}}</td>
+                <td>{{producto.categoria}}</td>
+                <td>{{producto.precio}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'producto:productos-buscar' %}" class="btn btn-primary" style="margin: 0.5em;">BUSCAR PRODUCTO</a>
+    <a href="{% url 'producto:crear' %}" class="btn btn-primary" style="margin: 0.5em;">CREAR NUEVO</a>
+
 {% endblock contenido %}

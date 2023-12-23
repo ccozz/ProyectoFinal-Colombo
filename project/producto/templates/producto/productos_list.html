@@ -1,0 +1,31 @@
+{% extends "core/base.html" %}
+
+{% block contenido_titulo %}
+    RESULTADOS DE BUSQUEDA
+{% endblock contenido_titulo %}
+
+{% block contenido %}
+
+    {% if productos %}
+        <table style="width:100%">
+            <tr>
+                <th>NOMBRE</th>
+                <th>CATEGORIA</th>
+                <th>PRECIO</th>
+            </tr>
+            {% for producto in productos %}
+                <tr>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.categoria}}</td>
+                    <td>{{producto.precio}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No se han encontrado productos con ese nombre.</p>
+    {% endif %}
+    <br>
+    <a href="{% url 'producto:productos-buscar' %}" class="btn btn-primary" style="margin: 0.5em;">BUSCAR PRODUCTO</a>
+    <a href="{% url 'producto:crear' %}" class="btn btn-primary" style="margin: 0.5em;">CREAR NUEVO</a>
+
+{% endblock contenido %}

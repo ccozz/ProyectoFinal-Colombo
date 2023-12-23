@@ -7,12 +7,13 @@
 {% block contenido %}
 
     {% if clientes %}
-        <table class="table table-bordered">
+        <table class="table table-bordered text-white">
             <tr>
                 <th>APELLIDO</th>
                 <th>NOMBRE</th>
                 <th>NACIMIENTO</th>
-                <th>PAIS</th>
+                <th>EMAIL</th>
+                <th>PROVINCIA</th>
             </tr>
             {% for cliente in clientes %}
                 <tr>
@@ -26,8 +27,15 @@
                         {% endif %} 
                     </td>
                     <td>
-                        {% if cliente.pais_origen %}
-                            {{cliente.pais_origen}}
+                        {% if cliente.email %}
+                            {{cliente.email}}
+                        {% else %}
+                        <i class="fa fa-italic" aria-hidden="true">-- No Registrado --</i>
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if cliente.provincia %}
+                            {{cliente.provincia}}
                         {% else %}
                         <i class="fa fa-italic" aria-hidden="true">-- No Registrado --</i>
                         {% endif %}
