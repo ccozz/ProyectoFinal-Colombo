@@ -4,26 +4,40 @@
     PRODUCTOS
 {% endblock contenido_titulo %}
 
-{% block contenido %}    
-    
+{% block contenido %}
+
     <table style="width:100%">
         <tr>
             <th>NOMBRE</th>
             <th>CATEGORIA</th>
             <th>PRECIO</th>
+            {% if request.user.is_authenticated %}
+                <th>ACCIONES</th>
+            {% endif %}
         </tr>
         {% for producto in productos %}
             <tr>
-                <td>{{producto.nombre}}</td>
-                <td>{{producto.get_categoria_display}}</td>
-                <td>{{producto.precio}}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.get_categoria_display }}</td>
+                <td>{{ producto.precio }}</td>
+                {% if request.user.is_authenticated %}
+                    <td>
+                        <div style="display: flex; gap: 0.5em;">
+                            <a href="{% url 'producto:editar' producto.id %}" class="btn btn-warning btn-sm" style="text-decoration: none; color: inherit;">Editar</a>
+                            <form action="{% url 'producto:eliminar' producto.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
     <br>
     <a href="{% url 'producto:productos-buscar' %}" class="btn btn-primary" style="margin: 0.5em;">BUSCAR</a>
-    <a href="{% url 'producto:crear' %}" class="btn btn-success" style="margin: 0.5em;">CREAR</a>
-    <a href="{% url 'producto:ver_productos' %}" class="btn btn-warning" style="margin: 0.5em;">EDITAR</a>
-    <a href="{% url 'producto:ver_productos' %}" class="btn btn-danger" style="margin: 0.5em;">ELIMINAR</a>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'producto:crear' %}" class="btn btn-success" style="margin: 0.5em;">CREAR</a>
+    {% endif %}
 
-    {% endblock contenido %}
+{% endblock contenido %}

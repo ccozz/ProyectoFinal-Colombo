@@ -8,7 +8,11 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'core:index' %}">INICIO</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'core:about' %}">Nosotros</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'cliente:index' %}">Clientes</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'cliente:index' %}">Clientes</a></li>
+                {% endif %}
+                
                 <li class="nav-item"><a class="nav-link" href="{% url 'producto:index' %}">Productos</a></li>
                 <li class="nav-item">
                     {% if user.is_authenticated %}
@@ -26,4 +30,3 @@
         </div>
     </div>
 </nav>
-

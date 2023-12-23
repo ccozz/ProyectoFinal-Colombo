@@ -3,7 +3,7 @@
 {% block contenido %}
 
     <h2>Login</h2>
-    <form action="core:login" method="POST">
+    <form action="{% url 'core:login' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-success" type="Submit">Iniciar Sesión</button>
