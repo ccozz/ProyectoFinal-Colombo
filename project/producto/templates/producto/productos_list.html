@@ -16,8 +16,19 @@
             {% for producto in productos %}
                 <tr>
                     <td>{{producto.nombre}}</td>
-                    <td>{{producto.categoria}}</td>
+                    <td>{{producto.get_categoria_display}}</td>
                     <td>{{producto.precio}}</td>
+                    <td>
+                        <div style="display: flex; gap: 0.5em;">
+                            <button class="btn btn-warning btn-sm">
+                                <a href="{% url 'producto:editar' producto.id %}" style="text-decoration: none; color: inherit;">Editar</a>
+                            </button>
+                            <form action="{% url 'producto:eliminar' producto.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
@@ -25,7 +36,7 @@
         <p>No se han encontrado productos con ese nombre.</p>
     {% endif %}
     <br>
-    <a href="{% url 'producto:productos-buscar' %}" class="btn btn-primary" style="margin: 0.5em;">BUSCAR PRODUCTO</a>
-    <a href="{% url 'producto:crear' %}" class="btn btn-primary" style="margin: 0.5em;">CREAR NUEVO</a>
+    <a href="{% url 'producto:productos-buscar' %}" class="btn btn-primary" style="margin: 0.5em;">BUSCAR</a>
+    <a href="{% url 'producto:crear' %}" class="btn btn-success" style="margin: 0.5em;">CREAR</a>
 
 {% endblock contenido %}

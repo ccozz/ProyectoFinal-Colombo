@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block contenido_titulo %}
+    EDITAR PRODUCTO
+{% endblock contenido_titulo %}
+
+{% block contenido %}    
+    
+    <div class="container">
+        <form action="{% url 'producto:editar' id=id %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-success" type="submit">GUARDAR</button>
+        </form>
+    </div>
+
+{% endblock contenido %}
