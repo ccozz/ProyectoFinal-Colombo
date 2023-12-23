@@ -1,0 +1,50 @@
+{% extends "core/base.html" %}
+
+{% block contenido_titulo %}
+    LISTA DE CLIENTES
+{% endblock contenido_titulo %}
+
+{% block contenido %}
+
+    {% if clientes %}
+        <table class="table table-bordered text-white">
+            <tr>
+                <th>APELLIDO</th>
+                <th>NOMBRE</th>
+                <th>NACIMIENTO</th>
+                <th>EMAIL</th>
+                <th>PROVINCIA</th>
+            </tr>
+            {% for cliente in clientes %}
+                <tr>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>
+                        {% if cliente.nacimiento %}
+                            {{cliente.nacimiento}}
+                        {% else %}
+                        <i class="fa fa-italic" aria-hidden="true">-- No Registrada --</i>
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if cliente.email %}
+                            {{cliente.email}}
+                        {% else %}
+                        <i class="fa fa-italic" aria-hidden="true">-- No Registrado --</i>
+                        {% endif %} 
+                    </td>
+                    <td>
+                        {% if cliente.provincia %}
+                            {{cliente.provincia}}
+                        {% else %}
+                        <i class="fa fa-italic" aria-hidden="true">-- No Registrado --</i>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No se registran clientes con ese apellido.</p>
+    {% endif %}
+
+{% endblock contenido %}

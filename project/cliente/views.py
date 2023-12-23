@@ -1,6 +1,10 @@
 from django.shortcuts import render, redirect
 from . import models
 from .forms import ClienteBuscarFormulario
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
+
 
 def home(request):
     # llamada a la base de datos
@@ -43,3 +47,34 @@ def crear(request):
     else:
         form = forms.ClienteForm()
     return render(request, "cliente/crear.html", {"form": form})
+
+# Vistas basadas en clases
+class ClienteList(ListView):
+    # con esto sabe que registros buscar
+    model = models.Cliente
+    # los renderiza en el siguiente template
+    template_name = 'clientes/cliente_list.html'
+    # los encuentro bajo la siguiente key
+    context_object_name = "clientes"
+
+class ClienteDetail(DetailView):
+    model = models.Cliente
+    template_name = 'clientes/cliente_detail.html'
+    context_object_name = "cliente"
+
+class ClienteCreate(CreateView):
+    model = models.Cliente
+    template_name = 'clientes/cliente_create.html'
+    fields = ["nombre", "apellido", "nacimiento", "email", "provincia"]
+    success_url = "cliente:clientes_list"
+
+class ClienteUpdate(UpdateView):
+    model = models.Cliente
+    template_name = 'clientes/cliente_update.html'
+    fields = ["nombre", "apellido", "nacimiento", "email", "provincia"]
+    success_url = "cliente:clientes_list"
+
+class ClienteDelete(DeleteView):
+    model = models.Cliente
+    template_name = 'clientes/cliente_delete.html'
+    success_url = "cliente:clientes_list"
