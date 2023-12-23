@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.home, name="index"),
     path('busqueda/', views.busqueda, name="clientes-buscar"),
     path('crear/', views.crear, name="crear"),
+    ##### CBV - CLIENTE
     path('cliente_list/', views.ClienteList.as_view(), name="cliente_list"),
     path('cliente_detail/<pk>', views.ClienteDetail.as_view(), name="cliente_detail"),
     path('cliente_create/', views.ClienteCreate.as_view(), name="cliente_create"),

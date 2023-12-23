@@ -4,6 +4,7 @@ from .forms import ClienteBuscarFormulario
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def home(request):
@@ -49,7 +50,7 @@ def crear(request):
     return render(request, "cliente/crear.html", {"form": form})
 
 # Vistas basadas en clases
-class ClienteList(ListView):
+class ClienteList(LoginRequiredMixin, ListView):
     # con esto sabe que registros buscar
     model = models.Cliente
     # los renderiza en el siguiente template
@@ -57,24 +58,24 @@ class ClienteList(ListView):
     # los encuentro bajo la siguiente key
     context_object_name = "clientes"
 
-class ClienteDetail(DetailView):
+class ClienteDetail(LoginRequiredMixin, DetailView):
     model = models.Cliente
     template_name = 'clientes/cliente_detail.html'
     context_object_name = "cliente"
 
-class ClienteCreate(CreateView):
+class ClienteCreate(LoginRequiredMixin, CreateView):
     model = models.Cliente
     template_name = 'clientes/cliente_create.html'
     fields = ["nombre", "apellido", "nacimiento", "email", "provincia"]
     success_url = "cliente:clientes_list"
 
-class ClienteUpdate(UpdateView):
+class ClienteUpdate(LoginRequiredMixin, UpdateView):
     model = models.Cliente
     template_name = 'clientes/cliente_update.html'
     fields = ["nombre", "apellido", "nacimiento", "email", "provincia"]
     success_url = "cliente:clientes_list"
 
-class ClienteDelete(DeleteView):
+class ClienteDelete(LoginRequiredMixin, DeleteView):
     model = models.Cliente
     template_name = 'clientes/cliente_delete.html'
     success_url = "cliente:clientes_list"
